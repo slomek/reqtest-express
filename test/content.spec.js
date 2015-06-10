@@ -20,7 +20,7 @@ describe("Response content", function () {
 		});
 
 		it("should pass when expected valid response content", function(){
-			new ReqTest(app)
+			ReqTest(app)
 	            .given({
 	                url: '/get/one',
 	                method: 'get'
@@ -28,8 +28,8 @@ describe("Response content", function () {
 	            .check().content('firstWord secondWord thirdWord');
 		});
 
-		xit("should fail when expected invalid response content", function(){
-			new ReqTest(app)
+		it("should fail when expected invalid response content", function(){
+			ReqTest(app)
 	            .given({
 	                url: '/get/one',
 	                method: 'get'
@@ -50,7 +50,7 @@ describe("Response content", function () {
 		});
 
 		it("should pass when expected valid response content", function(){
-			new ReqTest(app)
+			ReqTest(app)
 	            .given({
 	                url: '/get/one',
 	                method: 'get'
@@ -59,7 +59,7 @@ describe("Response content", function () {
 		});
 
 		it("should fail when expected invalid response content", function(){
-			new ReqTest(app)
+			ReqTest(app)
 	            .given({
 	                url: '/get/one',
 	                method: 'get'
@@ -83,7 +83,7 @@ describe("Response content", function () {
 		});
 
 		it("should pass when expected valid response content", function(){
-			new ReqTest(app)
+			ReqTest(app)
 	            .given({
 	                url: '/get/one',
 	                method: 'get'
@@ -92,7 +92,7 @@ describe("Response content", function () {
 		});
 
 		it("should fail when expected invalid response content", function(){
-			new ReqTest(app)
+			ReqTest(app)
 	            .given({
 	                url: '/get/one',
 	                method: 'get'

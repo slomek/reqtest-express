@@ -21,7 +21,8 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.loadNpmTasks('grunt-jasmine-node-coverage');
+    //grunt.loadNpmTasks('grunt-jasmine-node-coverage');
+    grunt.loadNpmTasks('grunt-jasmine-node');
 
 	grunt.registerTask('default', 'jasmine_node');
 

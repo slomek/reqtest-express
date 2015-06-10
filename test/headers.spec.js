@@ -16,7 +16,7 @@ describe("Response headers", function () {
 	describe("Checking existing header", function(){
 
 		it("should pass when asking if header exists", function(){
-			new ReqTest(app)
+			ReqTest(app)
 	            .given({
 	                url: '/get/one',
 	                method: 'get'
@@ -25,7 +25,7 @@ describe("Response headers", function () {
 		});
 
 		it("should pass when checking header value", function(){
-			new ReqTest(app)
+			ReqTest(app)
 	            .given({
 	                url: '/get/one',
 	                method: 'get'
@@ -34,7 +34,7 @@ describe("Response headers", function () {
 		});
 
 		it("should fail when checking header value incorrectly", function(){
-			new ReqTest(app)
+			ReqTest(app)
 	            .given({
 	                url: '/get/one',
 	                method: 'get'
@@ -44,28 +44,43 @@ describe("Response headers", function () {
 	            });
 		});
 
-	});
-
-	xit("should check for correct value of existing header", function(){
-
-		new ReqTest(app)
-            .given({
-                url: '/get/one',
-                method: 'get'
-            })
-            .expectHeader('key1', 'value1');
-
-	});
-
-	xit("should throw when checking invalid header existence", function(){
-
-		new ReqTest(app)
-            .given({
-                url: '/get/one',
-                method: 'get'
-            })
-            .expectHeader('key1', 'value1');
+        it("should pass when checking incorrect header value", function(){
+            ReqTest(app)
+                .given({
+                    url: '/get/one',
+                    method: 'get'
+                })
+                .check().headerValue('key1', 'value2', function(err){
+                    expect(err).toBeDefined();
+                });
+        });
 
 	});
+
+    describe("Checking non-existing header", function(){
+
+        it("should fail when asking if header exists", function(){
+            ReqTest(app)
+                .given({
+                    url: '/get/one',
+                    method: 'get'
+                })
+                .check().headerExists('key0', function(err){
+                    expect(err).toBeDefined();
+                });
+        });
+
+        it("should fail when checking header's value", function(){
+            ReqTest(app)
+                .given({
+                    url: '/get/one',
+                    method: 'get'
+                })
+                .check().headerValue('key0', 'value0', function(err){
+                    expect(err).toBeDefined();
+                });
+        });
+
+    });
 
 });

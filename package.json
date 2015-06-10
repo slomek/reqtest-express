@@ -1,6 +1,6 @@
 {
   "name": "reqtest-express",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "main": "index.js",
   "author": "Paweł Słomka",
   "licence": "MIT",
