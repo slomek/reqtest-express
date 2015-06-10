@@ -4,44 +4,65 @@ var express = require('express');
 var _ = require('underscore')._;
 
 
-
-
 var app = express();
-app.get('/getOne', function(req,res){
-	console.log('res.end(success);')
+app.get('/getOne', function (req, res) {
+    console.log('res.end(success);');
+    res.setHeader('a', 'def')
+    res.write('pre ')
     res.end('success');
 });
 
-describe("Simple", function(){
+describe("Simple", function () {
 
-  it("abcde", function(){
 
-  	var builders = require('.././lib/builders');
-  	var request = builders.buildRequest({
-    		url: '/getOne',
-    		method: 'get'
-	    }),
-  		response = {
-	    	end: _.noop,
-	    	__proto__: http.ServerResponse.prototype
-	    }
+    it("xyz", function() {
 
-	var MockResponse = new builders.MockResponse();
+        var ReqTest = require('../lib/ReqTest').ReqTest;
 
-	spyOn(response, 'end');
+        new ReqTest()
+            .given(app, {
+                url: '/getOne',
+                method: 'get'
+            })
+            .expectHeader('a', 'zz')
+            .expectContent('pre success');
 
-    app.handle(request, MockResponse.response)
 
-    // expect(response.end).toHaveBeenCalled();
+    });
 
-    MockResponse.expectEnd('a')
 
-    /*
-    {
-    		url: '/getOne',
-    		method: 'get'
-	    }
-	    */
-  });
+
+    xit("abcde", function () {
+
+        var builders = require('.././lib/builders');
+        var request = builders.buildRequest({
+                url: '/getOne',
+                method: 'get'
+            }),
+            response = {
+                end: _.noop,
+                __proto__: http.ServerResponse.prototype
+            }
+
+        var MockResponse = new builders.MockResponse();
+
+        //spyOn(response, 'end');
+
+        app.handle(request, MockResponse.response)
+
+        // expect(response.end).toHaveBeenCalled();
+
+        //MockResponse.expectEnd('a')
+
+
+        console.log('MockResponse.response', http.ServerResponse.prototype);
+
+        /*
+         {
+         url: '/getOne',
+         method: 'get'
+         }
+         */
+    });
 
 });
