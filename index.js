@@ -1,3 +1,3 @@
-var RequestBuilder = require('./lib/RequestBuilder');
+var ReqTest = require('./lib/ReqTest').ReqTest;
 
-module.exports.RequestBuilder = RequestBuilder;
+module.exports.ReqTest = ReqTest;
